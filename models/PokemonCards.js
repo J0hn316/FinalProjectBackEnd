@@ -5,10 +5,6 @@ const PokemonCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  type: {
-    type: String,
-    required: true,
-  },
   img: {
     type: String,
   },
