@@ -9,7 +9,7 @@ const CardRoute = require("./routes/CardRoutes.js");
 dotenv.config();
 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // app.get("/", (req, res) => {

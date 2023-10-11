@@ -75,17 +75,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//Edit Card
-router.get("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const card = await PokemonCard.findById(id);
-    return res.status(200).json(card);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send({ message: err.message });
-  }
-});
+// //Edit Card
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const card = await PokemonCard.findByIdAndUpdate(id);
+//     return res.status(200).json(card);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send({ message: err.message });
+//   }
+// });
 
 router.put("/:id", async (req, res) => {
   try {
@@ -95,13 +95,13 @@ router.put("/:id", async (req, res) => {
 
     const { id } = req.params;
 
+    req.body.img =
+      "http://img.pokemondb.net/artwork/" + req.body.name.toLowerCase();
     const result = await PokemonCard.findByIdAndUpdate(id, req.body);
     if (!result) {
       return res.status(404).json({ message: "Card not found" });
     }
     return res.status(200).send({ message: "Card updated successfully" });
-
-    // req.body.img = "http://img.pokemondb.net/artwork/" + req.body.name;
   } catch (err) {
     console.error(err.message);
     res.status(500).send({ message: err.message });
@@ -119,7 +119,8 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .send({ message: "Deleted successfully", deletedCard });
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
+    res.status(500).send({ message: err.message });
   }
 });
 
