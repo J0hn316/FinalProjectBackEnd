@@ -14,14 +14,11 @@ app.use(cors());
 
 app.use("/cards", CardRoute);
 
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => {
-    console.log("Successfully connected to database");
-    app.listen(PORT, () => {
-      console.log(`Listening on http://localhost:${PORT}/cards/seed`);
-    });
-  })
-  .catch((err) => {
-    console.error(`${err} connecting to database`);
-  });
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`);
+});
