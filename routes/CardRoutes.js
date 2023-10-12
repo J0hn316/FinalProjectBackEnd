@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router();
 const PokemonCard = require("../models/PokemonCards.js");
 
-// router.get("/", (req, res) => {
-//   res.send("Welcome to Home Page");
-// });
-
 //seed route
 router.get("/seed", async (req, res) => {
   try {
@@ -74,18 +70,6 @@ router.get("/:id", async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 });
-
-// //Edit Card
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const card = await PokemonCard.findByIdAndUpdate(id);
-//     return res.status(200).json(card);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send({ message: err.message });
-//   }
-// });
 
 router.put("/:id", async (req, res) => {
   try {

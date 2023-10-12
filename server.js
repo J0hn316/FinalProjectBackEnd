@@ -12,11 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-// app.get("/", (req, res) => {
-//   console.log(req);
-//   return res.status(234).send("Welcome to Pokemon Card App");
-// });
-
 app.use("/cards", CardRoute);
 
 mongoose
@@ -24,7 +19,7 @@ mongoose
   .then(() => {
     console.log("Successfully connected to database");
     app.listen(PORT, () => {
-      console.log(`Listening on http://localhost:${PORT}`);
+      console.log(`Listening on http://localhost:${PORT}/cards/seed`);
     });
   })
   .catch((err) => {
